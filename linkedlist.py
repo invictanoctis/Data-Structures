@@ -3,35 +3,36 @@ class Node:
         self.value = value
         self.next = None
 
+
 class LinkedList:
     def __init__(self) -> None:
         self.head = None
         self.size = 0
 
     # O(n) - linear time
-    def __repr__(self) -> str:
+    def __repr__(self) -> str: # Returns a String of all values in the list
         items = []
-        last = self.head
-        while last is not None:
-            items.append(str(last.value))
-            last = last.next
-        return f"[{', '.join(items)}]"
+        current_item = self.head
+        while current_item is not None:
+            items.append(str(current_item.value))
+            current_item = current_item.next
+        return ', '.join(items)
 
     # O(n) - linear time
-    def __contains__(self, value: any) -> bool:
-        last = self.head
-        while last is not None:
-            if last.value == value:
+    def __contains__(self, value: any) -> bool: # Returns whether the specified value was found or not
+        current_item = self.head
+        while current_item is not None:
+            if current_item.value == value:
                 return True
-            last = last.next
-        return False   
+            current_item = current_item.next
+        return False
 
     # O(1) - constant time
-    def __len__(self) -> int:
+    def __len__(self) -> int: # Returns the size of the list
         return self.size
 
     # O(n) - linear time
-    def append(self, value: any) -> None:
+    def append(self, value: any) -> None: # Adds the specified value at the end of the list
         new_node = Node(value)
         self.size += 1
         if self.head is None:
@@ -43,24 +44,24 @@ class LinkedList:
             last.next = new_node
 
     # O(1) - constant time
-    def prepend(self, value: any) -> None:
+    def prepend(self, value: any) -> None: # Adds the specified value at the beginning of the list
         first_node = Node(value)
         self.size += 1
         first_node.next = self.head
         self.head = first_node
 
     # O(n) - linear time
-    def insert(self, value: any, index: int) -> None:
+    def insert(self, value: any, index: int) -> None: # Inserts the specified value at the specified index
         if index == 0:
             self.prepend(value)
         else:
             if self.head is None:
-                raise ValueError('Index out of bounds')
+                raise IndexError('Index out of bounds')
             else:
                 last = self.head
                 for i in range(index - 1):
                     if last.next is None:
-                        raise ValueError('Index out of bounds')
+                        raise IndexError('Index out of bounds')
                     last = last.next
                 new_node = Node(value)
                 self.size += 1
@@ -68,7 +69,7 @@ class LinkedList:
                 last.next = new_node
 
     # O(n) - linear time
-    def delete(self, value: any) -> None:
+    def delete(self, value: any) -> None: # Removes the specified value
         last = self.head
         if last is not None:
             if last.value == value:
@@ -84,12 +85,12 @@ class LinkedList:
                 else:
                     raise ValueError('Value is not in List')
         else:
-            raise ValueError('List is empty')
+            raise IndexError('List is empty')
 
     # O(n) - linear time
-    def pop(self, index: int) -> any:
+    def pop(self, index: int) -> any: # Removes and returns the value at the specified index
         if self.head is None:
-            raise ValueError('List is empty')
+            raise IndexError('List is empty')
         if index == 0:
             value = self.head.value
             self.head = self.head.next
@@ -99,25 +100,46 @@ class LinkedList:
             last = self.head
             for i in range(index - 1):
                 if last.next is None:
-                    raise ValueError('Index out of bounds')
+                    raise IndexError('Index out of bounds')
                 last = last.next
             if last.next is None:
-                raise ValueError('Index out of bounds')
+                raise IndexError('Index out of bounds')
             value = last.next.value
             last.next = last.next.next
             self.size -= 1
             return value
 
     # O(n) - linear time
-    def get(self, index: int) -> any:
+    def get(self, index: int) -> any: # Returns the value at the specified index
         if self.head is None:
-            raise ValueError('Index out of bounds')
+            raise IndexError('Index out of bounds')
         last = self.head
         for i in range(index):
             if last.next is None:
-                raise ValueError('Index out of bounds')
+                raise IndexError('Index out of bounds')
             last = last.next
         return last.value
+    
+    # O(n) - linear time
+    def index(self, value: any) -> int: # Returns the first index of the specified value
+        last = self.head
+        index = 0
+        while last is not None:
+            if last.value == value:
+                return index
+            last = last.next
+            index += 1
+        raise ValueError('Value is not in list')
+    
+    # O(1) - constant time
+    def is_empty(self) -> bool: # Returns whether the list is empty or not
+        return self.head is None
+
+    # O(1) - constant time
+    def clear(self) -> None: # Clears the list
+        self.head = None
+        self.size = 0
+
 
 if __name__ == '__main__':
     pass
