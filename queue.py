@@ -4,7 +4,7 @@ class Node:
         self.next = None
 
 
-class Queue: # FIFO
+class Queue:
     def __init__(self) -> None:
         self.front = None
         self.rear = None
@@ -71,4 +71,4 @@ class Queue: # FIFO
 
 
 if __name__ == '__main__':
-    pass
+    pass # type: ignore

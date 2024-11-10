@@ -4,7 +4,7 @@ class Node:
         self.next = None
 
 
-class Stack: # LIFO
+class Stack:
     def __init__(self):
         self.top = None
         self.size = 0
