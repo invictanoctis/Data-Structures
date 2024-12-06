@@ -10,7 +10,8 @@ class Queue:
         self.rear = None
         self.size = 0
 
-    # O(n) - linear time
+    # Average: O(n) - linear time
+    # Best: O(1) - constant time if empty or one element
     def __repr__(self) -> str: # Returns a String of all values in the queue
         items = []
         current_item = self.front
@@ -19,7 +20,8 @@ class Queue:
             current_item = current_item.next
         return ', '.join(items)
 
-    # O(n) - linear time
+    # Average: O(n) - linear time
+    # Best: O(1) - constant time if empty or at index 0
     def __contains__(self, value: any) -> bool: # Returns whether the specified value was found or not
         current_item = self.front
         while current_item is not None:

@@ -9,7 +9,8 @@ class Stack:
         self.top = None
         self.size = 0
 
-    # O(n) - linear time
+    # Average: O(n) - linear time
+    # Best: O(1) - constant time if empty or one element
     def __repr__(self) -> str: # Returns a String of all values in the stack
         items = []
         current_item = self.top
@@ -18,7 +19,8 @@ class Stack:
             current_item = current_item.next
         return ', '.join(items)
 
-    # O(n) - linear time
+    # Average: O(n) - linear time
+    # Best: O(1) - constant time if empty or at index 0
     def __contains__(self, value: any) -> bool: # Returns whether the specified value was found or not
         current_item = self.top
         while current_item is not None:
@@ -30,7 +32,7 @@ class Stack:
     # O(1) - constant time
     def __len__(self) -> int: # Returns the size of the stack
         return self.size
-    
+
     # O(1) - constant time
     def push(self, value: any) -> None: # Adds the specified value at the top of the stack
         new_node = Node(value)
@@ -58,7 +60,7 @@ class Stack:
     # O(1) - constant time
     def is_empty(self) -> bool: # Returns whether the stack is empty or not
         return self.top is None
-    
+
     # O(1) - constant time
     def clear(self) -> None: # Clears the stack
         self.top = None
@@ -66,4 +68,4 @@ class Stack:
 
 
 if __name__ == '__main__':
-    pass
+    pass # type: ignore

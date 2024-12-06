@@ -9,7 +9,8 @@ class LinkedList:
         self.head = None
         self.size = 0
 
-    # O(n) - linear time
+    # Average: O(n) - linear time
+    # Best: O(1) - constant time if empty or one element
     def __repr__(self) -> str: # Returns a String of all values in the list
         items = []
         current_item = self.head
@@ -18,7 +19,8 @@ class LinkedList:
             current_item = current_item.next
         return ', '.join(items)
 
-    # O(n) - linear time
+    # Average: O(n) - linear time
+    # Best: O(1) - constant time if empty or at index 0
     def __contains__(self, value: any) -> bool: # Returns whether the specified value was found or not
         current_item = self.head
         while current_item is not None:
@@ -31,7 +33,8 @@ class LinkedList:
     def __len__(self) -> int: # Returns the size of the list
         return self.size
 
-    # O(n) - linear time
+    # Average: O(n) - linear time
+    # Best: O(1) - constant time if empty
     def append(self, value: any) -> None: # Adds the specified value at the end of the list
         new_node = Node(value)
         self.size += 1
@@ -50,7 +53,8 @@ class LinkedList:
         first_node.next = self.head
         self.head = first_node
 
-    # O(n) - linear time
+    # Average: O(n) - linear time
+    # Best: O(1) - constant time if empty
     def insert(self, value: any, index: int) -> None: # Inserts the specified value at the specified index
         if index == 0:
             self.prepend(value)
@@ -68,7 +72,8 @@ class LinkedList:
                 new_node.next = last.next
                 last.next = new_node
 
-    # O(n) - linear time
+    # Average: O(n) - linear time
+    # Best: O(1) - constant time if empty or at index 0
     def delete(self, value: any) -> None: # Removes the specified value
         last = self.head
         if last is not None:
@@ -87,7 +92,8 @@ class LinkedList:
         else:
             raise IndexError('List is empty')
 
-    # O(n) - linear time
+    # Average: O(n) - linear time
+    # Best: O(1) - constant time if empty or at index 0
     def pop(self, index: int) -> any: # Removes and returns the value at the specified index
         if self.head is None:
             raise IndexError('List is empty')
@@ -109,18 +115,20 @@ class LinkedList:
             self.size -= 1
             return value
 
-    # O(n) - linear time
+    # Average: O(n) - linear time
+    # Best: O(1) - constant time if empty or at index 0
     def get(self, index: int) -> any: # Returns the value at the specified index
         if self.head is None:
             raise IndexError('Index out of bounds')
         last = self.head
-        for i in range(index):
+        for _ in range(index):
             if last.next is None:
                 raise IndexError('Index out of bounds')
             last = last.next
         return last.value
     
-    # O(n) - linear time
+    # Average: O(n) - linear time
+    # Best: O(1) - constant time if empty or at index 0
     def index(self, value: any) -> int: # Returns the first index of the specified value
         last = self.head
         index = 0
@@ -142,4 +150,4 @@ class LinkedList:
 
 
 if __name__ == '__main__':
-    pass
+    pass # type: ignore
