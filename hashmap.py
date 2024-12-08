@@ -77,7 +77,7 @@ class HashMap:
 
         for c in key_string:
             hash_result = (hash_result * 31 + ord(c)) % self.capacity
-        
+
         return hash_result
 
 
